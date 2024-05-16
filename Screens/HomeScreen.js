@@ -1,9 +1,37 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Layout, Text } from "@ui-kitten/components";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import Svg, { Circle } from "react-native-svg";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { PieChart } from "react-native-gifted-charts";
 
 export default function HomeScreen() {
+  const salesData = [
+    {
+      value: 70,
+      color: "#E86830",
+      label: "Sales",
+      backgroundColor: "transparent",
+    },
+    { value: 30, color: "transparent", },
+  ];
+  const profitData = [
+    {
+      value: 30,
+      color: "#16C72E",
+      label: "Profit",
+      backgroundColor: "transparent",
+    },
+    { value: 70, color: "transparent" },
+  ];
+  const orderData = [
+    {
+      value: 80,
+      color: "#16A9C7",
+      label: "Orders",
+      backgroundColor: "transparent",
+    },
+    { value: 20, color: "transparent" },
+  ];
   return (
     // Screens/HomeScreen.js
     <ScrollView>
@@ -18,20 +46,39 @@ export default function HomeScreen() {
         <View style={styles.cards1}>
           <View style={styles.cardsContent}>
             <Text style={styles.header}>Sales</Text>
-            <Text>Total Sales Today</Text>
+            <Text appearance="hint" style={styles.hint}>
+              Total Sales Today
+            </Text>
             <Text style={styles.fig}>$500</Text>
           </View>
           <View style={styles.progressCircle}>
-            <Svg viewBox="0 0 100 100">
-              <Circle
-                cx="50"
-                cy="50"
-                r="45"
-                stroke="blue"
-                strokeWidth="4.5"
-                fill={"none"}
-              />
-            </Svg>
+            <PieChart
+              innerCircleColor={"#FADDD1"}
+              donut
+              radius={60}
+              innerRadius={50}
+              data={salesData}
+              centerLabelComponent={() => {
+                return (
+                  <Text
+                    style={{
+                      fontSize: 22,
+                      color: "black",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                    }}
+                  >
+                    70%
+                  </Text>
+                );
+              }}
+            />
+            <MaterialCommunityIcons
+              name="arrow-top-right"
+              size={26}
+              color="#E86830"
+              style={styles.arrow}
+            />
           </View>
         </View>
         <View style={styles.cards2}>
@@ -41,16 +88,33 @@ export default function HomeScreen() {
             <Text style={styles.fig}>$150</Text>
           </View>
           <View style={styles.progressCircle}>
-            <Svg viewBox="0 0 100 100">
-              <Circle
-                cx="50"
-                cy="50"
-                r="45"
-                stroke="blue"
-                strokeWidth="4.5"
-                fill={"none"}
-              />
-            </Svg>
+            <PieChart
+              innerCircleColor={"#A4E5A9"}
+              donut
+              radius={60}
+              innerRadius={50}
+              data={profitData}
+              centerLabelComponent={() => {
+                return (
+                  <Text
+                    style={{
+                      fontSize: 22,
+                      color: "black",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                    }}
+                  >
+                    30%
+                  </Text>
+                );
+              }}
+            />
+            <MaterialCommunityIcons
+              name="arrow-bottom-right"
+              size={26}
+              color="#16C72E"
+              style={styles.arrow1}
+            />
           </View>
         </View>
         <View style={styles.cards3}>
@@ -60,16 +124,33 @@ export default function HomeScreen() {
             <Text style={styles.fig}>1000</Text>
           </View>
           <View style={styles.progressCircle}>
-            <Svg viewBox="0 0 100 100">
-              <Circle
-                cx="50"
-                cy="50"
-                r="45"
-                stroke="blue"
-                strokeWidth="4.5"
-                fill={"none"}
-              />
-            </Svg>
+            <PieChart
+              innerCircleColor={"#9CE5F4"}
+              donut
+              radius={60}
+              innerRadius={50}
+              data={orderData}
+              centerLabelComponent={() => {
+                return (
+                  <Text
+                    style={{
+                      fontSize: 22,
+                      color: "black",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                    }}
+                  >
+                    80%
+                  </Text>
+                );
+              }}
+            />
+            <MaterialCommunityIcons
+              name="arrow-top-right"
+              size={26}
+              color="#16A9C7"
+              style={styles.arrow}
+            />
           </View>
         </View>
       </Layout>
@@ -106,19 +187,17 @@ const styles = StyleSheet.create({
     color: "#545454",
   },
   cards1: {
-    marginTop: 30,
-    paddingHorizontal: 20,
+    marginTop: 10,
     flexDirection: "row",
-    height: 150,
+    height: 160,
     marginHorizontal: 20,
     borderRadius: 30,
     justifyContent: "space-between",
-    backgroundColor: "#FAD6BA",
+    backgroundColor: "#FADDD1",
   },
   cards2: {
     marginTop: 30,
-    paddingHorizontal: 20,
-    height: 150,
+    height: 160,
     flexDirection: "row",
     marginHorizontal: 20,
     borderRadius: 30,
@@ -127,27 +206,45 @@ const styles = StyleSheet.create({
   },
   cards3: {
     marginTop: 30,
-    height: 150,
-    paddingHorizontal: 20,
+    height: 160,
     flexDirection: "row",
     marginHorizontal: 20,
     borderRadius: 30,
     justifyContent: "space-between",
-    backgroundColor: "#66D7EE",
-  },
-  progressCircle: {
-    width: 100,
-    height: 100,
+    backgroundColor: "#9CE5F4",
   },
   cardsContent: {
     alignItems: "start",
     justifyContent: "center",
     flexDirection: "column",
     padding: 30,
+    letterSpacing: 7,
   },
-  fig: {
-    fontSize: 30,
+  header: {
+    fontSize: 25,
     fontWeight: "bold",
     color: "#000000",
-  }
+  },
+  fig: {
+    fontSize: 35,
+    fontWeight: "bold",
+    color: "#000000",
+    lineHeight: 50,
+  },
+  progressCircle: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent",
+    flex: 1,
+  },
+  arrow: {
+    position: "absolute",
+    top: 10,
+    right: 30,
+  },
+  arrow1: {
+    position: "absolute",
+    top: 30,
+    right: 30,
+  },
 });

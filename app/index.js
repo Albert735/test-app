@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 import { ApplicationProvider, Layout } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva";
-import HomeScreen from "./app/Screens/HomeScreen";
-import TopNavigation from "./Components/TopNavigation";
-import BottomNavigation from "./Components/BottomNavigation";
+import HomeScreen from "../Screens/HomeScreen";
+import TopNavigation from "../Components/TopNavigation";
+import BottomNavigation from "../Components/BottomNavigation";
 
-export default function App() {
+export default function Page() {
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
       <Layout style={styles.container}>
@@ -21,5 +21,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ECEDEC",
+    height: 100,
   },
 });
