@@ -8,7 +8,7 @@ export default function BottomNavigation() {
   return (
     <>
       <Layout style={styles.container}>
-        <Pressable onPress={() => router.push("")}>
+        <Pressable onPress={() => router.push("/users/Revenue")}>
           <AntDesign name="home" size={30} color="#545454" />
         </Pressable>
 
